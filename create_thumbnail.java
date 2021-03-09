@@ -21,7 +21,7 @@ public class create_thumbnail{
     private static final String PNG_MIME = (String) "image/png";
 
     public static void main(String[] args) {
-        String imgPath=args[0];
+        String imgPath=args[args.length-1];
         resize_image(imgPath);
         
     }
@@ -38,10 +38,14 @@ public class create_thumbnail{
             // }
             // String imageType = matcher.group(1);
 
-            String[] filePathInfo=imgPath.split(".");
+            String[] filePathInfo=imgPath.split("\\.");
+            if(filePathInfo.length!=2){
+                System.out.println("args error");
+                return false;
+            }
             //check str nums and return related info
 
-            String imageType=filePathInfo[2];
+            String imageType=filePathInfo[1];
             
 
             if (!(JPG_TYPE.equals(imageType)) && !(PNG_TYPE.equals(imageType))) {
@@ -86,8 +90,8 @@ public class create_thumbnail{
             // InputStream is = new ByteArrayInputStream(os.toByteArray());
 
             // save img to folder
-            File finalImg=new File(filePathInfo[0]+"_resized"+"."+filePathInfo[2]);
-            ImageIO.write(resizedImage, filePathInfo[2], finalImg);
+            File finalImg=new File(filePathInfo[0]+"_resized"+"."+filePathInfo[1]);
+            ImageIO.write(resizedImage, filePathInfo[1], finalImg);
             return true;
 
         } catch (IOException e) {
