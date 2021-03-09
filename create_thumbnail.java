@@ -15,10 +15,10 @@ import javax.imageio.ImageIO;
 public class create_thumbnail{
     private static final float MAX_WIDTH = 100;
     private static final float MAX_HEIGHT = 100;
-    private final String JPG_TYPE = (String) "jpg";
-    private final String JPG_MIME = (String) "image/jpeg";
-    private final String PNG_TYPE = (String) "png";
-    private final String PNG_MIME = (String) "image/png";
+    private static final String JPG_TYPE = (String) "jpg";
+    private static final String JPG_MIME = (String) "image/jpeg";
+    private static final String PNG_TYPE = (String) "png";
+    private static final String PNG_MIME = (String) "image/png";
 
     public static void main(String[] args) {
         String imgPath=args[0];
@@ -88,7 +88,7 @@ public class create_thumbnail{
             // save img to folder
             File finalImg=new File(filePathInfo[0]+"_resized"+"."+filePathInfo[2]);
             ImageIO.write(resizedImage, filePathInfo[2], finalImg);
-
+            return true;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
